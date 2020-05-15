@@ -19,7 +19,7 @@ using ClickyCratesApi.Results;
 
 namespace ClickyCratesApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
