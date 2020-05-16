@@ -65,6 +65,13 @@ namespace ClickyCratesApi.Controllers
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
         }
+        //GET api/Account/UserId
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserId")]
+        public string GetUserId()
+        {
+            return User.Identity.GetUserId();
+        }
 
         // POST api/Account/Logout
         [Route("Logout")]
