@@ -23,7 +23,7 @@ namespace ClickyCratesApi.Controllers
             string authenticatedAspNetUserId = RequestContext.Principal.Identity.GetUserId();
             using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
             {
-                string sql = $"SELECT Id,FirstName,LastName,NickName,City FROM dbo.Players " +
+                string sql = $"SELECT Id,FirstName,LastName,NickName,City,BirthDay FROM dbo.Players " +
                     $"WHERE Id LIKE '{authenticatedAspNetUserId}'";
                 
                 var player = cnn.Query<PlayersAPIModels>(sql).FirstOrDefault();
@@ -39,8 +39,8 @@ namespace ClickyCratesApi.Controllers
         {
             using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
             {
-                string sql = $"INSERT INTO dbo.Players(Id,FirstName,LastName,NickName,City)" +
-                    $"VALUES ('{player.Id}','{player.FirstName}','{player.LastName}','{player.NickName}','{player.City}')";
+                string sql = $"INSERT INTO dbo.Players(Id,FirstName,LastName,NickName,City,BirthDay)" +
+                    $"VALUES ('{player.Id}','{player.FirstName}','{player.LastName}','{player.NickName}','{player.City}','{player.BirthDay}')";
                 int rows = cnn.Execute(sql);
                 if(rows != 1)
                 {
@@ -53,6 +53,20 @@ namespace ClickyCratesApi.Controllers
             }
         }
 
+        //Get api/Player/GetPlayersInfo
+        [HttpGet]
+        [Route("GetPlayersInfo")]
+        public List<PlayersAPIModels> GetPlayersInfo()
+        {
+            string authenticatedAspNetUserId = RequestContext.Principal.Identity.GetUserId();
+            using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
+            {
+                string sql = $"SELECT FirstName,LastName,NickName,City,BirthDay,IsOnline FROM dbo.Players ";
+
+                List<PlayersAPIModels> player = cnn.Query<PlayersAPIModels>(sql).ToList();
+                return player;
+            }
+        }
 
     }
 }

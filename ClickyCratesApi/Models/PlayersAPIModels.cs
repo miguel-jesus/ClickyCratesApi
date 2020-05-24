@@ -10,8 +10,10 @@ namespace ClickyCratesApi.Models
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string BirthDay {get;set;}
         public string NickName { get; set; }
         public string City { get; set; }
+        public bool IsOnline { get; set; }
 
     }
 }
