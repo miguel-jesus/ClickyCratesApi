@@ -61,7 +61,7 @@ namespace ClickyCratesApi.Controllers
             string authenticatedAspNetUserId = RequestContext.Principal.Identity.GetUserId();
             using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
             {
-                string sql = $"SELECT FirstName,LastName,NickName,City,BirthDay,IsOnline FROM dbo.Players WHERE IsOnline = 1 ";
+                string sql = $"SELECT FirstName,LastName,NickName,City,BirthDay,IsOnline,LastLogin FROM dbo.Players WHERE IsOnline = 1 ";
 
                 List<PlayersAPIModels> player = cnn.Query<PlayersAPIModels>(sql).ToList();
                 return player;
@@ -79,7 +79,7 @@ namespace ClickyCratesApi.Controllers
 
             string sql = "UPDATE dbo.Players " +
                 $"SET FirstName = '{player.FirstName}', LastName = '{player.LastName}', NickName = '{player.NickName}',City = '{player.City}'," +
-                 $"BirthDay = '{player.BirthDay}',IsOnline = '{player.IsOnline}' " +
+                 $"BirthDay = '{player.BirthDay}',IsOnline = '{player.IsOnline}',LastLogin = '{player.LastLogin}' " +
                 $"WHERE Id = '{player.Id}'";
 
             try
