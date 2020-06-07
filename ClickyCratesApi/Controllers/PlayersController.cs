@@ -79,7 +79,7 @@ namespace ClickyCratesApi.Controllers
 
             string sql = "UPDATE dbo.Players " +
                 $"SET FirstName = '{player.FirstName}', LastName = '{player.LastName}', NickName = '{player.NickName}',City = '{player.City}'," +
-                 $"BirthDay = '{player.BirthDay}',IsOnline = '{player.IsOnline}',LastLogin = '{player.LastLogin}' " +
+                 $"BirthDay = '{player.BirthDay}',IsOnline = '{player.IsOnline}',LastLogin = '{player.LastLogin}',HourGameScene='{player.HourGameScene}' " +
                 $"WHERE Id = '{player.Id}'";
 
             try

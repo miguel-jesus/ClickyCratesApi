@@ -15,6 +15,7 @@ namespace ClickyCratesApi.Models
         public string City { get; set; }
         public bool IsOnline { get; set; }
         public string LastLogin { get; set; }
+        public string HourGameScene { get; set; }
 
     }
 }
