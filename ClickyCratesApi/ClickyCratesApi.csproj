@@ -255,6 +255,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ObjectsController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MessagesModel.cs" />
     <Compile Include="Models\ObjectsModel.cs" />
     <Compile Include="Models\PlayersAPIModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
