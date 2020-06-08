@@ -23,7 +23,7 @@ namespace ClickyCratesApi.Controllers
             string authenticatedAspNetUserId = RequestContext.Principal.Identity.GetUserId();
             using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
             {
-                string sql = $"SELECT Id,FirstName,LastName,NickName,City,BirthDay FROM dbo.Players " +
+                string sql = $"SELECT Id,FirstName,LastName,NickName,City,BirthDay,IsBanned,BannedHour FROM dbo.Players " +
                     $"WHERE Id LIKE '{authenticatedAspNetUserId}'";
                 
                 var player = cnn.Query<PlayersAPIModels>(sql).FirstOrDefault();
@@ -79,7 +79,8 @@ namespace ClickyCratesApi.Controllers
 
             string sql = "UPDATE dbo.Players " +
                 $"SET FirstName = '{player.FirstName}', LastName = '{player.LastName}', NickName = '{player.NickName}',City = '{player.City}'," +
-                 $"BirthDay = '{player.BirthDay}',IsOnline = '{player.IsOnline}',LastLogin = '{player.LastLogin}',HourGameScene ='{player.HourGameScene}' " +
+                 $"BirthDay = '{player.BirthDay}',IsOnline = '{player.IsOnline}',LastLogin = '{player.LastLogin}',HourGameScene ='{player.HourGameScene}',IsBanned ='{player.IsBanned}'," +
+                 $"BannedHour = '{player.BannedHour}' " +
                 $"WHERE Id = '{player.Id}'";
 
             try
@@ -97,6 +98,21 @@ namespace ClickyCratesApi.Controllers
             }
 
             return Ok();
+        }
+
+        //Get api/Player/GetPlayersList
+        [HttpGet]
+        [Route("GetPlayersList")]
+        public List<PlayersAPIModels> GetPlayersList()
+        {
+            string authenticatedAspNetUserId = RequestContext.Principal.Identity.GetUserId();
+            using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
+            {
+                string sql = $"SELECT Id,FirstName,LastName,NickName,City,BirthDay,IsOnline,LastLogin,HourGameScene,IsBanned,BannedHour FROM dbo.Players";
+
+                List<PlayersAPIModels> player = cnn.Query<PlayersAPIModels>(sql).ToList();
+                return player;
+            }
         }
 
     }

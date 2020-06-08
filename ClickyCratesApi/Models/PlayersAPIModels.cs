@@ -16,6 +16,8 @@ namespace ClickyCratesApi.Models
         public bool IsOnline { get; set; }
         public string LastLogin { get; set; }
         public string HourGameScene { get; set; }
+        public bool IsBanned { get; set; }
+        public string BannedHour { get; set; }
 
     }
 }
