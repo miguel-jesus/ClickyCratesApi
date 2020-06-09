@@ -23,7 +23,7 @@ namespace ClickyCratesApi.Controllers
             string authenticatedAspNetUserId = RequestContext.Principal.Identity.GetUserId();
             using (IDbConnection cnn = new ApplicationDbContext().Database.Connection)
             {
-                string sql = $"SELECT Id,FirstName,LastName,NickName,City,BirthDay,IsBanned,BannedHour FROM dbo.Players " +
+                string sql = $"SELECT Id,FirstName,LastName,NickName,City,BirthDay,IsBanned,BannedHour,HourGameScene FROM dbo.Players " +
                     $"WHERE Id LIKE '{authenticatedAspNetUserId}'";
                 
                 var player = cnn.Query<PlayersAPIModels>(sql).FirstOrDefault();
