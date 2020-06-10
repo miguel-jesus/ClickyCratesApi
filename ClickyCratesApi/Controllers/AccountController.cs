@@ -411,7 +411,7 @@ namespace ClickyCratesApi.Controllers
                 {
                     foreach (string error in result.Errors)
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError("Info", error);
                     }
                 }
 
